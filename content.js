@@ -55,7 +55,10 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
                   if (child.nodeType === Text.TEXT_NODE) {
                     let newHtml = '';
                     if (translationDict['$scope'] == 'word') {
-                      newHtml = child.textContent.replace(/[\p{L}\p{M}]+/gu, '<span class="hover-word">$&</span>');;
+                      newHtml = child.textContent.replace(/[\p{L}\p{M}]+/gu, function(match) {
+                        console.log("Matched word:", match, "Hex:", [...match].map(c => c.charCodeAt(0).toString(16)));
+                        return "<span class=\"hover-word\">" + match + "</span>";
+                    });
                     }
                     else if (translationDict['$scope'] == 'letter') {
                         let maxLength = translationDict['$maxlength']
