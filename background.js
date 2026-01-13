@@ -10,6 +10,11 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 
 */
 
+chrome.action.onClicked.addListener(function(tab) {
+  chrome.tabs.sendMessage(tab.id, {"message": "clicked_browser_action"});
+});
+
+
 document.querySelectorAll('.langoption').forEach((element) => {
     element.addEventListener('click', () => {
         chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
