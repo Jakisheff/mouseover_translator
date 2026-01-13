@@ -55,7 +55,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
                   if (child.nodeType === Text.TEXT_NODE) {
                     let newHtml = '';
                     if (translationDict['$scope'] == 'word') {
-                      newHtml = child.textContent.replace(/\p{L}+/gu, '<span class="hover-word">$&</span>');;
+                      newHtml = child.textContent.replace(/[\p{L}\p{M}]+/gu, '<span class="hover-word">$&</span>');;
                     }
                     else if (translationDict['$scope'] == 'letter') {
                         let maxLength = translationDict['$maxlength']
